@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>DEADLOCK</title>
+<style>
+h1 {
+  font-size: 40px;
+}
+h2 {
+  font-size: 30px;
+}
+p {
+   font-size: 25px;
+  border-bottom: 6px solid red;
+  background-color: lightgrey;
+}
+</style>
+</head>
+<body>
+
+<h1 style="color:DodgerBlue;">DEADLOCK</h1>
+<p>Deadlock is a state in which each member of a group is waiting for another member, including itself, to take action, such as sending a message or more commonly releasing a lock.Deadlock is a common problem in multiprocessing systems, parallel computing, and distributed systems, where software and hardware locks are used to arbitrate shared resources and implement process synchronization.In an operating system, a deadlock occurs when a process or thread enters a waiting state because a requested system resource is held by another waiting process, which in turn is waiting for another resource held by another waiting process. If a process is unable to change its state indefinitely because the resources requested by it are being used by another waiting process, then the system is said to be in a deadlock.In a communications system, deadlocks occur mainly due to lost or corrupt signals rather than resource contention.</p>
+<h2 style="color:Tomato;">DEADLOCK HANDLING</h2>
+<p>Most current operating systems cannot prevent deadlocks.When a deadlock occurs, different operating systems respond to them in different non-standard manners. Most approaches work by preventing one of the four Coffman conditions from occurring, especially the fourth one.Major approaches are as follows.<br><br>Ignoring deadlock: In this approach, it is assumed that a deadlock will never occur. This is also an application of the Ostrich algorithm.This approach was initially used by MINIX and UNIX.This is used when the time intervals between occurrences of deadlocks are large and the data loss incurred each time is tolerable.<br><br>Detection:Under the deadlock detection, deadlocks are allowed to occur. Then the state of the system is examined to detect that a deadlock has occurred and subsequently it is corrected. An algorithm is employed that tracks resource allocation and process states, it rolls back and restarts one or more of the processes in order to remove the detected deadlock. Detecting a deadlock that has already occurred is easily possible since the resources that each process has locked and/or currently requested are known to the resource scheduler of the operating system.After a deadlock is detected, it can be corrected by using one of the following methods:one or more processes involved in the deadlock may be aborted. One could choose to abort all competing processes involved in the deadlock. This ensures that deadlock is resolved with certainty and speed.[citation needed] But the expense is high as partial computations will be lost. Or, one could choose to abort one process at a time until the deadlock is resolved. This approach has high overhead because after each abort an algorithm must determine whether the system is still in deadlock.[citation needed] Several factors must be considered while choosing a candidate for termination, such as priority and age of the process.Resources allocated to various processes may be successively preempted and allocated to other processes until the deadlock is broken.
+</p>
+<h2 style="color:Tomato;">DEADLOCK MANAGMENT</h2>
+<p>The management problem of deadlock by the MAC operating system is the responsibility of the UNIX file (lockf) locking system where its main responsibility is that of deadlock detection when it comes to the demand for resources already used by others, It does this through the use of graphs where the system will see if there is a cycle in the object, and if there The management problem of deadlock by the MAC operating system is the responsibility of the UNIX file (lockf) locking system where its main responsibility is that of deadlock detection when it comes to the demand for resources already used by others, It does this through the use of graphs where the system will see if there is a cycle in the object, and if there is it is because it found a deadlock.This type of deadlock naturally generates a state of deadlock in the system in where the system will generate an error established as "EDEADLK". This suggests that if you find a conflict of this kind it generates problems to the operating system but not as much as the cost of effort to find the solution without the intervention of the user or to restrict the step in the process bothering the user; "ignoring the problem and pretending that crashes do not occur in the system is a method used by the majority of operating systems, including UNIX". Having said that we intend to create a simulation of deadlock detection and correction by the ostrich algorithm; as has been said before is very difficult to correct the problem or prevent it without disturbing the user, making it more difficult for him to work; as a result, most operating systems use the ostrich algorithm.</p>
+</body>
+</html>

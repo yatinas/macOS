@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>MEMORY MANAGEMENT</title>
+<style>
+body {
+  background-image: url("bg.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: white;
+text-decoration: none;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+h2 {
+  color: white;
+  text-align: left;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+color: sandybrown;
+}
+</style>
+</head>
+<body>
+
+
+<h1>MEMORY MANAGEMENT</h1>
+<p>Efficient memory management is an important aspect of writing high performance code in Mac OS X code. Tuning your memory usage can reduce both your application’s memory footprint and the amount of CPU time it uses. In order to properly tune your code though, you need to understand something about how Mac OS X manages memory. Unlike earlier versions of Mac OS, Mac OS X includes a fully-integrated virtual memory system that you cannot turn off. It is always on, providing up to 4 gigabytes of addressable space per process. However, few machines have this much dedicated RAM for the entire system, much less for a single process. To compensate for this limitation, the virtual memory system uses hard disk storage to hold data not currently in use. This hard disk storage is sometimes called the “swap” space because of its use as storage for data being swapping in and out of memory. Note: Unlike most UNIX-based operating systems, Mac OS X does not use a preallocated swap partition for virtual memory. Instead, it uses all of the available space on the machine’s boot partition. The following sections introduce terminology and provide a brief overview of the Mac OS X virtual memory system. For more detailed information on how the Mac OS X virtual memory system works, please see Inside Mac OS X: Kernel Programming.</p>
+
+<h2>VIRTUAL MEMORY IN MAC OS</h2>
+<p>In Mac OS X, each process has its own sparse 32-bit virtual address space. Thus, each process has an address space that can grow dynamically up to a limit of four gigabytes. As an application uses up space, the virtual memory system allocates additional swap file space on the root file system. The virtual address space of a process consists of mapped regions of memory. Each region of memory in the process represents a specific set of virtual memory pages. A region has specific attributes controlling such things as inheritance (portions of the region may be mapped from “parent” regions), write-protection, and whether it is “wired” (that is, it cannot be paged out). Because regions contain a given number of pages, they are page-aligned, meaning the starting address of the region is also the starting address of a page and the ending address also defines the end of a page. The kernel associates a VM object with each region of the virtual address space. The kernel uses the VM object to track and manage the resident and nonresident pages of that region. A region can map either to an area of memory in the backing store or to a specific file-mapped file in the file system. The VM object maps regions in the backing store through the default pager and maps file-mapped files through the vnode pager. The default pager is a system manager that maps the nonresident virtual memory pages to backing store and fetches those pages when requested. The vnode pager implements file mapping. The vnode pager uses the paging mechanism to provide a window directly into a file. This mechanism lets you read and write portions of the file as if they were located in memory. A VM object may point to a pager or to another VM object. The kernel uses this self referencing to implement a form of page-level sharing known as copy-on-write. Copy-on-write allows multiple blocks of code (including different processes) to share a page as long as none write to that page. If one process writes to the page, a new, writable copy of the page is created in the address space of the process doing the writing. This mechanism allows the system to copy large quantities of data efficiently.</p>
+
+<h2>CLASSIC MAC OS MEMORY MANAGEMENT</h2>
+<p>The classic Mac OS used a form of memory management that has fallen out of favor in modern systems. Criticism of this approach was one of the key areas addressed by the change to Mac OS X. The original problem for the engineers of the Macintosh was how to make optimum use of the 128 KB of RAM with which the machine was equipped, on Motorola 68000-based computer hardware that did not support virtual memory.[1] Since at that time the machine could only run one application program at a time, and there was no fixed secondary storage, the engineers implemented a simple scheme which worked well with those particular constraints. That design choice did not scale well with the development of the machine, creating various difficulties for both programmers and users.</p>
+
+<h2>ORGANIZATION OF MEMORY IN MAC OS</h2>
+<p>When the Macintosh Operating System starts up, it divides the available RAM into two broad sections. It reserves for itself a zone or partition of memory known as the system partition. The system partition always begins at the lowest addressable byte of memory (memory address 0) and extends upward.
+All memory outside the system partition is available for allocation to applications or other software components. In system software version 7.0 and later (or when MultiFinder is running in system software versions 5.0 and 6.0), the user can have multiple applications open at once. When an application is launched, the Operating System assigns it a section of memory known as its application partition. In general, an application uses only the memory contained in its own application partition.</p>
+
+</body>
+</html>

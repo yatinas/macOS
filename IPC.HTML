@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>IPC</title>
+<style>
+body {
+  background-image: url("bg.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: white;
+text-decoration: none;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+h2 {
+  color: white;
+  text-align: left;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+color: sandybrown;
+}
+</style>
+</head>
+<body>
+
+
+<h1>Inter-Process Communication(IPC)</h1>
+<p>1. A notification center manages the sending and receiving of notifications. It notifies all observers of notifications meeting specific criteria.<br>
+2. The notification information is encapsulated in NSNotification objects. Client objects register themselves with the notification center as observers of specific notifications posted by other objects.<br>
+3. When an event occurs, an object posts an appropriate notification to the notification center. Posting a distributed notification is an expensive operation. The notification gets sent to a system wide server that then distributes it to all the processes that have objects registered for distributed notifications. The latency between posting the notification and the notification’s arrival in another process is unbounded. In fact, if too many notifications are being posted and the server’s queue fills up, notifications can be dropped.
+<br><br>
+Usually at some point in its life, a process needs to communicate in some way with another process. Perhaps it needs to transfer some data, or it needs to let other processes know that something happened to it. However, communication between processes on a modern operating system can be a tricky affair; if such communication is poorly conceived and carried out, the overall stability and performance of the system could suffer. In Mac OS X, a program has a number of ways to communicate with other programs. These mechanisms for interprocess communication often exists in different layers of the system. Each often has its own specific purposes, limitations, and intended scenarios. Some are more suitable than others for code written at a certain level of the system; for example, a kernel extension would not make use of Apple events.
+<br><br>
+<b>OPTIONS YOU HAVE CONSIDERED:</b><br>
+Control files: While it is possible to communicate via control files, you have to keep in mind that the files need to be communicated via a network file system among the machines involved. So the network file system serves as an abstraction of the actual network infrastructure, but does not offer the full power and flexibility the network normally has. Implementation: Practically, you will need to have at least two files for each pair of client/servers: a file the server uses to send a request to the client(s) and a file for the responses. If each process can communicate both ways, you need to duplicate this. Furthermore, both the client(s) and the server(s) work on a "pull" basis, i.e., they need to revisit the control files frequently and see if something new has been delivered. The advantage of this solution is that it minimizes the need for learning new techniques. The big disadvantage is that it has huge demands on the program logic; a lot of things need to be taken care of by you (Will the files be written in one piece or can it happen that any party picks up inconsistent files? How frequently should checks be implemented? Do I need to worry about the file system, like caching, etc? Can I add encryption later without toying around with things outside of my program code? ...) If portability was an issue (which, as far as I understood from your question is not the case) then this solution would be easy to port to different systems and even different programming languages. However, I don't know of any network files ystem for iPhone OS, but I am not familiar with this.
+<br>
+Sockets: The programming interface is certainly different; depending on your experience with socket programming it may mean that you have more work learning it first and debugging it later. Implementation: Practically, you will need a similar logic as before, i.e., client(s) and server(s) communicating via the network. A definite plus of this approach is that the processes can work on a "push" basis, i.e., they can listen on a socket until a message arrives which is superior to checking control files regularly. Network corruption and inconsistencies are also not your concern. Furthermore, you (may) have more control over the way the connections are established rather than relying on things outside of your program's control (again, this is important if you decide to add encryption later on). The advantage is that a lot of things are taken off your shoulders that would bother an implementation in 1. The disadvantage is that you still need to change your program logic substantially in order to make sure that you send and receive the correct information (file types etc.). In my experience portability (i.e., ease of transitioning to different systems and even programming languages) is very good since anything even remotely compatible to POSIX works.</p>
+</body>
+</html>

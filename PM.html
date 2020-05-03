@@ -1,0 +1,166 @@
+<html>
+<head>
+<title>process management</title>
+<style>
+
+h1{
+color:black;
+font-weight:bold;
+text-align: center;
+font-size: 40px;
+}
+h2 {
+  color: white;
+  text-align: left;
+font-size: 30px;
+}
+
+p{
+color:black;
+font-weight:bolder;
+font-style: arial;
+font-size:20px;
+border-bottom: 6px solid red;
+  background-color: lightgrey;
+}
+
+.button {
+  background-color: tan;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+body{
+background-image:url("bg5.jpg");
+font-style:verdana;
+margin-left: 20px;
+margin-top: 20px;
+
+}
+
+</style>
+</head>
+<body>
+<h1>PROCESS MANAGEMENT</h1>
+<div id="menu"> 
+<a href="CPU SCHEDULING.html" class="button">CPU SCHEDULING</a> 
+<a href="PROCESS SYNCHRONIZATION.html" class="button">PROCESS SYNCHRONIZATION</a>  
+<a href="IPC.html" class="button">IPC</a> 
+</div>
+<p> Process management involves various tasks like creation, scheduling, termination of processes, and a dead lock. Process is a program that is under execution, which is an important part of modern-day operating systems. The OS must allocate resources that enable processes to share and exchange information.<br>
+
+What is a Process?
+Process is the execution of a program that performs the actions specified in that program. It can be defined as an execution unit where a program runs. The OS helps you to create, schedule, and terminates the processes which is used by CPU. A process created by the main process is called a child process.
+
+Process operations can be easily controlled with the help of PCB(Process Control Block). You can consider it as the brain of the process, which contains all the crucial information related to processing like process id, priority, state, CPU registers, etc.<br></p>
+<h2>
+WHAT IS PROCESS MANAGEMENT?
+</h2>
+<p>
+
+Process management involves various tasks like creation, scheduling, termination of processes, and a dead lock. Process is a program that is under execution, which is an important part of modern-day operating systems. The OS must allocate resources that enable processes to share and exchange information. It also protects the resources of each process from other methods and allows synchronization among processes.
+It is the job of OS to manage all the running processes of the system. It handles operations by performing tasks like process scheduling and such as resource allocation.
+</p>
+
+<h2>PROGRAM Vs PROCESS
+</h2>
+<p>
+A process is a program in execution. For example, when we write a program in C or C++ and compile it, the compiler creates binary code. The original code and binary code are both programs. When we actually run the binary code, it becomes a process.
+A process is an ‘active’ entity, as opposed to a program, which is considered to be a ‘passive’ entity. A single program can create many processes when run multiple times; for example, when we open a .exe or binary file multiple times, multiple instances begin (multiple processes are created).
+</p>
+
+<h2>
+SCHEDULING OF PROCESSES
+
+</h2>
+
+<p>
+The Process Manager manages the scheduling of processes.
+The number of processes is limited only by available memory. The Process Manager
+maintains information about each process— for example, the current state of the process,
+the address and size of its partition, its type, its creator, a copy of all process-specific
+system global variables, information about its 'SIZE' resource, and a process serial
+number. This process information is referred to as the context of a process. The Process
+Manager assigns a process serial number to identify each process. A process serial
+number identifies a particular instance of an application; this number is unique during a
+single boot of the local machine. The foreground process has first priority for accessing
+the CPU. Other processes can access the CPU only when the foreground process yields
+time to them. There is only one foreground process at any one time. However, multiple
+processes can exist in the background.
+An application that is in the background can get CPU time but can’t interact with the user
+while it is in the background. (However, the user can bring the application to the 
+foreground— for example, by clicking in one of the application’s windows.) Any
+application that has the canBackground flag set in its 'SIZE' resource is eligible
+to obtain access to the CPU when it is in the background.
+Applications can be designed without a user interface; these are called background-only
+applications. A background-only application does not call the Window Manager
+InitWindows routine and is identified by having the onlyBackground flag set in
+its 'SIZE' resource. Background-only applications do not display windows or a menu
+bar and are not listed in the Application menu.
+Your application can relinquish control of the CPU each time you call the Event Manager
+functions WaitNextEvent or EventAvail. If, at that time, there are no events
+pending for your application, the Process Manager may schedule other processes for
+execution. (You can also call the GetNextEvent function; however, you should use
+WaitNextEvent to provide greater support for cooperative multitasking.)
+<br>
+</p>
+
+<h2>
+PROCESS CREATION
+
+</h2>
+<p>The application jump table contains one entry for every externally referenced routine in
+every code segment of your application.
+When you create an application, you specify in its 'SIZE' resource how much memory
+you want the Process Manager to allocate for your application’s partition. You specify
+two values: the preferred amount of memory to allocate and the minimum amount of
+memory to allocate. When a user opens your application from the Finder, the Process
+Manager first attempts to allocate a partition of the preferred size. If your application
+cannot be launched in the preferred amount of memory, the Finder might display a dialog
+box giving the user the option of opening the application using less than the preferred
+size. The Finder will not launch your application if the minimum amount of memory
+specified for your application is not available.
+The Process Manager assigns the application a process serial number, records its context,
+and returns control to the launching application (usually the Finder). The Process
+Manager typically transfers control to the new application after the launching application
+makes a subsequent call to WaitNextEvent or EventAvail.
+<br></p>
+
+<h2>PROCESS SCHEDULING</h2>
+
+<p>When your application is the foreground process, it yields time to other processes in these
+situations: when the user wants to switch to another application or when no events are
+pending for your application. Your application can also choose to yield processing time
+to other processes when it is performing a lengthy operation.
+A major switch occurs when the Process Manager switches the context of the
+foreground process with the context of a background process (including the A5 worlds
+and application-specific system global variables) and brings the background process to
+the front, sending the previous foreground process to the background.
+A minor switch occurs when the Process Manager switches the context of a process to
+give time to a background process without bringing the background process to the front.<br>
+A background process should not perform any task that significantly limits the ability of
+the foreground process to respond quickly to the user. A background process should call
+WaitNextEvent often enough to let the foreground process be responsive to the user.
+The sleep parameter of the WaitNextEvent function specifies a length of time, in
+ticks, during which the application relinquishes the CPU if no events are pending. For
+example, if you specify a nonzero value in the sleep parameter and no events are
+pending in your application’s event queue when you call WaitNextEvent, the Process
+Manager saves the context of your process and schedules other processes until an event
+becomes available or the time expires. Once the specified time expires or an event
+becomes available for your application, your process becomes eligible to run. At this
+time, the Process Manager schedules your process to run at the next available chance.
+(You can also call the Process Manager’s WakeUpProcess function to make a process
+eligible to run before the time in the sleep parameter expires.) If the time specified by
+sleep expires and no events are pending for your application, the Process Manager
+sends your application a null event.<br></p>
+
+</body>
+
+</html>

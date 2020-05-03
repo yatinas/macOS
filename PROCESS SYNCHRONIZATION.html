@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>PROCESS SYNCHRONIZATION</title>
+<style>
+body {
+  background-image: url("bg.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: white;
+text-decoration: none;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+h2 {
+  color: white;
+  text-align: left;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+color: sandybrown;
+}
+</style>
+</head>
+<body>
+
+
+<h1>PROCESS SYNCHRONIZATION</h1>
+<p>Mac OS X provides several synchronization mechanisms, two of which we have already come across in this chapter, namely, POSIX and System V semaphores. Figure 969 shows the important kernel-level and user-level synchronization mechanisms. Frameworks such as Core Foundation and Foundation provide their own wrappers around some of the mechanisms. a synchronization mechanism is based on a hardware implementation of a multiprocessor lock. Depending on a specific locking mechanism's semantics, along with the lock's associated storage, there may be additional data structures, such as a queue of threads waiting for the lock. Typical operations required to implement some form of synchronization include atomic compare-and-store (also called test-and-set) and compare-and-swap. For example, given a hardware implementation of the test-and-set operation, we can treat a word of storage as a simple lock. We initialize the word to 0 (unlocked) and define the lock operation as a successful test-and-set operation that sets the word's value to 1. Conversely, the unlock operation sets the word's value to 0. A test-and-set operation also returns the old value, so the thread attempting to acquire a lock will know if it succeeded. If the lock acquisition attempt failed, what the thread does depends on the nature of the locking mechanism. Two obvious options are that the thread keeps trying actively and that the thread sleeps. Atomic memory access is required to maintain a consistent and ordered storage state. An atomic access is always performed in its entirety, with no externally visible suboperations. Thus, two or more atomic memory accesses will never overlapthey will always be serialized. Moreover, the order in which memory operations are completed and the order in which they are seen by other processors (in a multiprocessor system) do matter. Therefore, besides atomicity of memory access, we also need to be able to control the order of memory operations. The PowerPC architecture provides special hardware instructions for these purposes.</p>
+<h2>BASIC SYNCHRONIZATION</h2>
+<p>Operating systems use a number of structures and algorithms to ensure proper synchronization between various parts of the kernel. xnu uses several different locking structures, including the BSD lockmanager, Mach mutexes, simple locks, read-write locks, and funnels. Additionally thread control is complicated by the use of Mach continuations, and kernel preemption.
+</p>
+<h2>SIMPLE LOCKS</h2>
+<p>Simple locks in Mach are standard spin locks. When a thread attempts to access a simple lock that is in use it loops until the lock becomes free. This is useful when allowing the thread to sleep could cause a deadlock, or when one of the threads could be running in an interrupt context. Simple locks are the safest general synchronization primitive to use when in doubt, but their CPU cost is very high. In general is is better to use a mutex if at all possible. If a piece of code attempts to acquire a simple lock it already holds it will result in a kernel panic.
+void
+simple_lock_init(
+usimple_lock_t,etap_event_t);
+void
+simple_lock(usimple_lock_t);
+void
+simple_unlock(usimple_lock_t);
+unsigned
+int simple_lock_try(usimple_lock_t);</p>
+<h2>READ-WRITE LOCKS</h2>
+<p>Many variables within the kernel are safe to be read, so long as they are not being written. If a lock is highly contended, generally it is primarily being protected for readers. Read-write locks solve this problem by allowing either multiple reads, or a single writer to possess the lock. While there are API's for promoting and demoting locks between the read and write states, their usage is discouraged and subject to change. void
+lock_write (lock_t*);
+void
+lock_read (lock_t*);
+void
+lock_done (lock_t*);
+#define lock_read_done(l) \
+lock_done(l);
+#define lock_write_done(l) \
+lock_done(l);
+</p>
+</body>
+</html>

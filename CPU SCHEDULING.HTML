@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>CPU SCHEDULING</title>
+<style>
+body {
+  background-image: url("bg.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: white;
+text-decoration: none;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+h2 {
+  color: white;
+  text-align: left;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+color: sandybrown;
+}
+</style>
+</head>
+<body>
+
+
+<h1>CPU SCHEDULING</h1>
+<p>Process management involves various tasks like creation, scheduling, termination of processes, and a dead lock. Process is a program that is under execution, which is an important part of modern-day operating systems. The OS must allocate resources that enable processes to share and exchange information.
+What is a Process? Process is the execution of a program that performs the actions specified in that program. It can be defined as an execution unit where a program runs. The OS helps you to create, schedule, and terminates the processes which is used by CPU. A process created by the main process is called a child process. Process operations can be easily controlled with the help of PCB(Process Control Block). You can consider it as the brain of the process, which contains all the crucial information related to processing like process id, priority, state, CPU registers, etc.</p>
+
+<h2>CRITERIAS:"best" scheduling algorithm</h2>
+<p>CPU : CPU would be working most of the time(Ideally 100% of the time).
+Throughput: Total number of processes completed per unit time.
+
+Turnaround time: Amount of time taken to execute a particular process.
+
+Waiting time: The sum of the periods spent waiting in the ready queue.</p>
+<h2>CLASSIC MAC OS</h2>
+<p>Mac OS 9 uses cooperative scheduling for threads, where one process controls multiple cooperative threads, and also provides preemptive scheduling for multiprocessing tasks. The kernel schedules multiprocessing tasks using a preemptive scheduling algorithm. All Process Manager processes run within a special multiprocessing task, called the "blue task". Those processes are scheduled cooperatively, using a round-robin scheduling algorithm; a process yields control of the processor to another process by explicitly calling a blocking function such as WaitNextEvent. Each process has its own copy of the Thread Manager that schedules that process's threads cooperatively; a thread yields control of the processor to another thread by calling YieldToAnyThread or YieldToThread.</p>
+
+</body>
+</html>

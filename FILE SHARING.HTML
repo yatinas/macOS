@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>FILE SHARING SEMANTICS</title>
+<style>
+
+h1{
+color:white;
+font-weight:bold;
+text-align: center;
+font-size: 45px;
+}
+h2 {
+  color: white;
+  text-align: left;
+font-size: 30px;
+}
+
+p{
+color:beige;
+font-style: arial;
+font-size:20px;
+ text-align: center;
+}
+
+.button {
+  background-color: honeydew;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+li{
+color: white;
+text-align: center;
+}
+body{
+background-image:url("bg6.jpg");
+font-style:verdana;
+background-size: cover;
+background-size: 100% 110%;
+color:beige;
+}
+
+</style>
+</style>
+</head>
+<body>
+
+
+<h1>FILE SHARING SEMANTICS</h1>
+<div id="menu"> 
+<a href="FILE.html" class="button">FILE MANAGEMENT</a> 
+<a href="DS.html" class="button">DIRECTORY STRUCTURE</a>
+<p><br><br><br>
+<b>Sequential semantics<b>
+<br>
+Read returns result of last write
+Easily achieved if
+<ul>
+<li>Only one server</li>
+<li>Clients do not cache data</li>
+</ul>
+BUT
+Performance problems if no cache
+<ul><li>Obsolete data
+ We can write-through</li>
+<li>Must notify clients holding copies</li>
+<li>Requires extra state, generates extra traffic</li>
+</ul>
+</body>
+</html>

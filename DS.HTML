@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>DIRECTORY STRUCTURE</title>
+<style>
+
+h1{
+color:black;
+font-weight:bold;
+text-align: center;
+font-size: 45px;
+}
+h2 {
+  color: black;
+  text-align: left;
+font-size: 30px;
+}
+
+p{
+color:goldenrod;
+font-style: arial;
+font-size:20px;
+}
+
+.button {
+  background-color: goldenrod;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+body{
+background-image:url("bg4.jpg");
+font-style:verdana;
+background-size: cover;
+background-size: 100% 110%;
+
+}
+
+</style>
+</style>
+</head>
+<body>
+
+
+<h1>DIRECTORY STRUCTURE</h1>
+<div id="menu"> 
+<a href="FILE.html" class="button">FILE MANAGEMENT</a> 
+<a href="FILE SHARING.html" class="button">FILE SHARING SENAMTICS</a>
+<h2>MAC DIRECTORY STRUCTURE</h2>
+<p>Many Mac administrators began training as Windows professionals. Still others, accustomed to logging on to Macs and finding the desktop, applications, documents, downloads, movies, music, pictures and other files already stored in handy, easily folders accessed via the Finder, aren't necessarily confident they understand where these folders and their contents are truly stored on the Mac's hard drive.The Mac OS X file system stores files within folders, also known as directories. The top, uppermost folder is known as the root directory. Folders located within (or beneath) the root directory are known as subfolders or subdirectories, two different ways of saying the same thing. That may seem obvious to more advanced users and administrators, but even some more seasoned users may not be aware an absolute directory path exists for each file.To navigate to a specific file's path, which can prove critical when attempting to administer a Mac using the Terminal, first, the user must understand the directory structure. The root directory is often referred to as /. Beneath the root, on most Macs by default, are several additional folders, including Applications (which stores programs) and Users (which stores home folder information for each user possessing an account on the machine).<br><br><b>Using terminal to use FILES & FOLDERS</b><br>
+Once Terminal is opened (by opening Finder, selecting Applications, opening the Utilities directory and double-clicking Terminal), the Mac user is greeted with the command prompt. The change directory (cd), list (ls) and print working directory (pwd) commands are particularly helpful when navigating a Mac's directory or file system structure using Terminal.
+</p>
+<h2>The CD command</h2>
+<p>The cd command is used to navigate to the directory or folder the user wishes to access. For example, if from the command prompt the operator wishes to change the working directory to the Applications folder, the user should enter the following command: cd /Applications Entering cd followed by the absolute path to the file or directory in question enables operators to navigate to specific locations quickly when using the command line. Instead of navigating to the Applications folder, if the operator instead intended to change the working directory to the Applications folder's Utilities subfolder, the user would enter: cd /Applications/Utilities</p>
+<h2>The IS command</h2>
+<p>Commands can be entered with options (or additional information), however, that make the commands exponentially more powerful. For example, the ls command, by default, hides within its results certain files, such as those with file names that possess a period (or dot) as the first character. Entering ls -a, or the command ls followed by a space and then a dash and the lowercase letter a, instead of just ls generates instructions dictating all files within a directory be revealed within the command's results.</p>
+<h2>The PWD command</h2>
+<p>When working within different directories, and later, when additional Terminal skills are obtained and operators begin performing additional move, copy and even file attribute or permissions changes, it becomes easier to forget in which directory one is currently working. The pwd (present working directory) command is a quick shortcut command an operator can enter to reveal the current working directory.</p>
+</body>
+</html>
